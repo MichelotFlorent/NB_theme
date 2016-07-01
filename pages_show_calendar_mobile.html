@@ -1,0 +1,149 @@
+<div class="padcontainer">
+	
+{% include "breadcrumbs" %}
+
+<div class="content_container">
+
+{% if page.headline.size > 0 %}
+	<div id="headline">
+		<h2>{{ page.headline }}</h2>
+	</div>
+{% endif %}
+
+<div id="content">
+
+	{% if page.calendar.content.size > 0 %}
+		<div id="intro">
+			{{ page.calendar.content }}
+		</div>
+	{% endif %}
+
+	{% if page.calendar.is_proximity? %}
+
+	  <div class="padbottommore">
+
+	  {% form_for address_change %}
+
+	  <div class="form_wrap">
+	  	<div class="form">
+  	  
+	  	  <div class="padtopmore">
+	  	    <h4>Trouver des activités près de chez vous</h4>
+	  	  </div>
+
+	  		<div class="padtop padbottom">{% text_field "submitted_address", class:"text" %}
+	  		  <div class="padtopless">dans un rayon de {{ page.calendar.distance_radio_buttons | replace: '1', '2' | replace: '5', '8' | replace: '10', '16' | replace: '25', '40' | replace: '50', '80' | replace: '100', '160' | replace: 'miles', 'km' | replace: 'mile', 'km' }}</div>
+	  		</div>
+      
+	      <div>
+	        {% submit_tag "Rechercher", class:"submit-button" %}
+	        {% if page.calendar.allow_user_submitted? %}
+	          ou <span class="destroy_link"><a href="{{ page.calendar.new_event_url }}">accueillez  votre propre activité</a></span>
+	    		{% endif %}
+                <div class="form_submit"></div>
+	      </div>
+  		
+	  		{% if page.calendar.events_upcoming_nearby_count > 0 %}
+	  		  {% if page.calendar.events_upcoming_nearby_count > 1 %}
+	    		  <div class="padtop">
+	    		    Nous avons trouvé {{ page.calendar.events_upcoming_nearby_count }} activités.
+	    		  </div>
+	  		  {% endif %}
+	    		<div class="padtop">
+	    		  {{ page.calendar.events_upcoming_nearby_map }}
+	    		</div>
+	  		{% else %}
+	    		<div class="padtopmore">
+	    		  Aucune activité n'a été trouvée à proximité de chez vous. Essayez d'élargir votre recherche...
+	    		  {% if page.calendar.allow_user_submitted? %}
+	    		  À moins
+	    		  <a href="{{ page.calendar.new_event_url }}">que vous organisiez votre propre activité</a>?
+	    		  {% endif %}
+	    		</div>
+	    		{% if page.calendar.events_upcoming.size > 0 %}
+	      		<div class="padtop">
+	      		  Afficher les {{ page.calendar.events_upcoming_count }} événements malgré tout.
+	      		</div>
+	      		<div class="padtop">
+	      		  {{ page.calendar.events_upcoming_map }}
+	      		</div>
+	    		{% endif %}
+	  		{% endif %}
+
+	  	</div> 	
+	  </div>
+	
+	  {% endform_for %}
+  
+	  </div>
+  
+	  {% if page.calendar.events_upcoming_nearby.size > 0 %}
+  
+	    {% for event in page.calendar.events_upcoming_nearby %}
+	        {% include "event" %}
+	      <hr>
+	    {% endfor %}
+
+	    {{ page.calendar.events_upcoming_nearby | paginate }}
+    
+	  {% else %}
+  
+	    {% for event in page.calendar.events_upcoming %}
+	        {% include "event" %}
+	      <hr>
+	    {% endfor %}
+
+	    {{ page.calendar.events_upcoming | paginate }}
+  
+	  {% endif %}
+  
+	{% else %}
+
+	  {% if page.calendar.show_map? %}
+    
+	    {% if page.calendar.events_upcoming_count > 0 %}
+    
+	      <div class="padbottommore">
+	        <div class="form_wrap">
+	        	<div class="form">
+	            <div class="padtopmore">
+	              {{ page.calendar.events_upcoming_map }}
+	            </div>
+	          </div>
+	        </div>
+	      </div>
+    
+	    {% endif %}
+    
+	  {% endif %}
+  
+	  {% if page.calendar.events_upcoming_count == 0 %}
+  
+	    Toujours pas d'activités...
+	    {% if page.calendar.allow_user_submitted? %}
+	      Vous pourriez peut-être
+	      <a href="{{ page.calendar.new_event_url }}">en organiser une</a>?
+	    {% endif %}
+  
+	  {% else %}
+
+	    {% for event in page.calendar.events_upcoming %}
+	        {% include "event" %}
+	      <hr>
+	    {% endfor %}
+
+	    {% if page.calendar.allow_user_submitted? %}
+	      <span class="destroy_link"><a href="{{ page.calendar.new_event_url }}">Organisez votre propre activité</a></span>
+			{% endif %}
+
+	    <div class="padtop">
+	    {{ page.calendar.events_upcoming | paginate }}
+	    </div>
+
+	  {% endif %}
+
+	{% endif %}
+	
+</div>
+</div>
+</div>

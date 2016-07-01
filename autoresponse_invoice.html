@@ -1,0 +1,20 @@
+{{recipient.first_name}}
+<br /><br />
+{% if invoice.is_closed? %}
+Nous vous remercions d'avoir payé votre facture.
+{% elsif invoice.is_overdue? %}
+Cette facture est en attente.
+{% else %}
+Vous avez une nouvelle facture.
+{% endif %}
+<br /><br />
+Date : {{ invoice.sent_at | date_to_string }}<br />
+Facture : {{ invoice.name }}<br />
+{% if invoice.is_closed? %}
+Montant : {{ invoice.amount_with_discount_format }}<br />
+{% else %}
+Montant dû : {{ invoice.amount_due_format }}<br/>
+{% endif %}
+Statut : {{ invoice.status }}<br/>
+<br />
+<a href="{{ invoice_payment_url }}">Votre facture</a>.

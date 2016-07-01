@@ -1,0 +1,4 @@
+<div class="byline">
+  Publi&eacute; par {{ page.author.published_name_linked }} <span class="pc">{{ page.author.capital_amount_format }}</span> le {{ page.published_at | date: '%d&#47;%n&#47;%Y' }}
+  {% if site.has_rule_page? and request.logged_in? %}&middot; <a href="{{ page.flag_url }}" class="flag">Signaler</a>{% endif %}
+</div>

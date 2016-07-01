@@ -1,0 +1,59 @@
+ {% if homepage_excerpt.vote_pledge.is_pledged? %}
+
+  <h3>Vous
+    {% if homepage_excerpt.vote_pledge.current_vote_pledge.is_no? %}
+    n'avez promis
+    {% elsif homepage_excerpt.vote_pledge.current_vote_pledge.is_unsure? %}
+    avez indiqué ne pas être certain de
+    {% elsif homepage_excerpt.vote_pledge.current_vote_pledge.is_yes? %}
+    promettre
+    {% endif %}
+    de
+    {% if homepage_excerpt.vote_pledge.current_vote_pledge.could_vote? %}
+    voter pour
+    {% else %}
+    soutenir
+    {% endif %}
+    {{ site.candidate_first_name_or_site_name }}.
+  </h3>
+
+  <div class="padtop">
+    {{ homepage_excerpt.vote_pledge.current_vote_pledge | delete_link message: "Retirer la promesse" class_name: "button destroy-link" }}
+  </div>
+
+  {% else %}
+
+  <div class="form">
+    <div class="form-errors">{% error_messages_for vote_pledge %}</div>
+    <div id="ask_for_volunteer" class="vote-pledge-form">
+
+      <div class="row-fluid">
+        <div class="span12">
+          <a href="{{ homepage_excerpt.vote_pledge.yes_url }}" class="button submit-link get" style="width: 120px;">Oui</a> Je soutiens {{ site.candidate_first_name_or_site_name }}.
+        </div>
+      </div>
+
+      <div class="row-fluid padtopmore">
+        <div class="span12">
+          <a href="{{ homepage_excerpt.vote_pledge.unsure_url }}" class="button neutral-link get" style="width: 120px;"> Peut-être</a> Je ne suis pas encore certain de voter pour {{ site.candidate_first_name_or_site_name }}.
+          <a href="{{ site.full_url}}" style="color: #fdffd7;">Reparlons-nous bientôt!</a>
+        </div>
+      </div>
+
+      <div class="row-fluid padtopmore">
+        <div class="span12">
+          <a href="{{ homepage_excerpt.vote_pledge.no_url }}" class="button destroy-link get" style="width: 120px;">Non</a> Je ne soutiens pas {{ site.candidate_first_name_or_site_name }}.
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+
+  {% if homepage_excerpt.text_keyword_instructions.size > 0 %}
+  <div class="padbottom padtopmore">
+    ou {{ homepage_excerpt.text_keyword_instructions }}
+  </div>
+  {% endif %}
+
+{% endif %}

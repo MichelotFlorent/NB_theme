@@ -1,0 +1,6 @@
+{% yield %}
+
+-=-=-
+Ce courriel a été envoyé à {{ recipient.email }}.{% if page %} Afin d'arrêter de recevoir des notifications de cette page : {{ page.unsubscribe_url }}{% endif %}
+{{ settings.official_name }}{% if settings.has_address? %} - {{ settings.address.one_line }} {% endif %}
+-=-=-

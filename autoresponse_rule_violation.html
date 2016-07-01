@@ -1,0 +1,10 @@
+{{recipient.first_name}}
+<br /><br />
+Il semblerait que vous ayez enfreint une règle. Vous avez perdu {{ setting.capital_plural_name }} et votre participation sera bannie après trois infractions. Nous espérons que vous prendrez queqlues instants afin de réviser le règlement de la page afin d'éviter ce genre d'infractions à l'avenir. En vous remerciant de votre compréhension.
+<br/><br/>
+{% if site.has_rule_page? %}
+<a href="{{ site.rule_page.full_url }}">{{ site.rule_page.full_url }}</a>
+<br/><br/>
+{% endif %}
+{{ broadcaster.name }}<br/>
+<a href="{{ site.full_url }}">{{ site.full_url }}</a><br/>

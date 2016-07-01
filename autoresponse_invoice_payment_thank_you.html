@@ -1,0 +1,11 @@
+{{recipient.first_name}}
+<br /><br />
+Nous vous remercions de votre achat. Ceci est un reçu pour vos registres personnels.
+<br /><br />
+Date : {{ invoice_payment.succeeded_at | date_to_string }}<br />
+Facture : {{ invoice.name }}<br />
+Montant : {{ invoice_payment.amount_in_dollars_format }}<br />
+Type de paiement : {{ invoice_payment.payment_type_name }}<br />
+Numéro de confirmation : {{ invoice_payment.id }}
+<br /><br />
+<a href="{{ page.full_url }}">{{ page.full_url }}</a>

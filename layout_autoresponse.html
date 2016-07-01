@@ -1,0 +1,23 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<html><head><title></title>
+<style type="text/css">
+body, td, font { font-size: 10pt; }
+td p { margin: 0em; }
+p { margin: 1em 0em; }
+td div p { margin: 1em 0em; }
+</style>
+</head><body marginheight=5 topmargin=5>
+<font face="Arial, Verdana, sans-serif" size=2>
+	
+{% yield %}
+
+<br/><br/>
+-=-=-<br/>
+Ce courriel a été envoyé à {{ recipient.email }}.
+{% if page %}
+	Afin d'arrêter de recevoir des mises à jour sur cette page, <a href="{{ page.unsubscribe_url }}">cliquez ici</a>.
+{% endif %}
+<br/>
+{{ settings.official_name }}{% if settings.has_address? %} &middot; {{ settings.address.one_line }} {% endif %}
+</font>
+</body></html>

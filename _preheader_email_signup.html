@@ -1,0 +1,28 @@
+{% if request.sorta_logged_in? %}
+	Bonjour <b>{{ request.current_signup.name_or_email }}.</b>
+	<div class="social">
+		Connexion avec <a href="{{ request.facebook_connect_url }}">Facebook</a>, <a href="{{ request.twitter_connect_url }}">Twitter</a> ou <a href="/login">Courriel</a>. 
+		Vous n'êtes pas {{ request.current_signup.name_or_email }}? <a href="{{ request.current_signup.logout_url }}">cliquez ici</a>.
+	</div>
+{% else %}
+
+{% form_for signup %}
+
+{% hidden_field_tag "page_id", page.id %}
+
+<label for="signup_email">Courriel</label>
+
+{% email_field "email", class:"text", placeholder:"nom&commat;domaine.quebec" %}
+
+{% submit_tag "Inscription", class:"submit" %}
+
+<span>ou</span>
+
+
+<a class="button" href="/login" style="width: 105px">Connexion</a>
+
+{% error_messages_for signup %}
+
+{% endform_for %}
+
+{% endif %}

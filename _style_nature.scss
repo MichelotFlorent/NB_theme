@@ -1,0 +1,180 @@
+/*  Stylesheet information for CITYZEN - Nature Variation
+File created date: 19.02.2014
+Last modified date: 19.02.2014
+By: Fer
+*/
+// headline font
+$headline-font: "proxima-nova", Arial, Helvetica, sans-serif;
+// main font
+$font: "proxima-nova", Arial, Helvetica, sans-serif;
+$tisa: "ff-tisa-web-pro", 'Droid Serif', serif;
+$theme-color-1: #6dba84; // green [link color]
+$theme-color-2: #000; // off white orange
+$theme-color-3: #6dba84; // light green
+$theme-color-4: #6dba84; // dark blue
+
+$title-color: $theme-color-1;
+
+// form input area focus color
+$theme-color-5: rgba(123,163,41,.6);
+
+// general success and error colors
+$red: #ff0000;
+$green: #619114;
+
+/* CityZen Vars - do not edit unless you know what you are doing
+--------------------------------------------------------------------------*/
+$bg-body: #eff2f2;
+$background-texture: "background.png";
+$header-texture: "none";
+$header-color: #fff;
+$header-border-color: #f1f1f1;
+$topnav_bg: none;
+$nav-color: #000;
+$nav-color-hover: $theme-color-1;
+$nav-li-hover-bg: #FFE2A7;
+$nav-sub-border-color: lighten(#FFE2A7, 7);
+$slider_bottom: #f1f1f1;
+$slider_arrows_bg: #6dba84;
+$slider_arrows_border_top: #7dca93;
+$h2-color:#fff;
+$h2-headline-color:#000;
+$bg-text: #c8a36a;
+$shadow-text: inset 2px 2px 2px 0px #c09c63;
+
+/* CUSTOM */
+$bg-container: #f5f5f5;
+
+/* borders */
+$bd-bottom-color-1: #f5cc91;
+$bd-bottom-color-2: #e6e6e6;
+
+/* buttons */
+$button-join-bg-color: #6dba84;
+$button-shadow-color: #90c6a0;
+
+$count-in-color: #b66e3a;
+$count-in-bg-color: #ffe2a7;
+$inner-box-bg-color: transparent;
+$inner-box-border: 2px solid #b66e3a;
+$count-in-bg-image: #ffe2a7 url(gradient-countin3.png) no-repeat center 0;
+$bg-count-in-text: #c8a36a;
+$color-count-in-text: #fff;
+$border-color-count-in-text: #c09c63;
+$button-count-in-shadow: none;
+$button-count-in-shadow-ov: none;
+$border-latest-updates-box: 4px solid #000;
+$inner-box-shadow: none;
+$button-join-color: #fff;
+
+$share-container-color: #c8a36a;
+
+$bg-latest-updates: #f5f5f5;
+$color-h2-latest-updates: #000;
+$bg-article-latest-updates: #fff;
+$shadow-article-latest-updates: none;
+$border-article-latest-updates: 4px solid #000;
+
+$border-article: 10px solid #fff;
+$share-icons: 'share-icons3.svg';
+$bg-latest-updates-button: #6dba84;
+$bg-featured-event: #3c3c3c;
+$bg-vol-contact: #f5f5f5;
+$color-vol-contact: #000;
+$color-vol-contact-2: #000;
+$color-vol-contact-label: #000;
+$bg-vol-contact-box: #fff;
+$border-vol-contact-box: none;
+$bg-vol-contact-form-box: #fff;
+$hr-vol-contact: #000;
+$hr-vol-feedback: #000;
+$h2-vol-contact-weight: 700;
+$shadow-volunteer-home: none;
+
+$bg-feedback-home-button: #6dba84;
+$color-feedback-home-button: #fff;
+
+$bg-footer-color: #4a4a4a;
+$color-footer: #fafafa;
+$border-footer-color: #3c3c3c;
+$bg-footer-menu-color: #282828;
+$border-footer-menu-item-color: #eaeaea;
+$color-footer-nav-ov: #006dc9;
+$color-footer-nav: #fff;
+
+$sidebar_bg: #c8a36a;
+$sidebar_border: 10px solid #b66e3a;
+
+$background-breadcumbs: #b66e3a;
+$intro-border-top: 10px #fff solid;
+$bg-post-bar: #c8a36a;
+$color-byline: #fff;
+$bg-share-button: #b66e3a no-repeat 95%;
+$color-post-bar-share-container: #333;
+$color-reactions-bar: #fff;
+$color-addreaction: #975b30;
+/*$color-addreaction: #B66E3A;*/
+$border-top-reactions: 2px solid #b66e3a;
+$bg-activities: #b66e3a;
+$color-activities: #fff;
+$bg-activities-item: #405c91;
+$shadow-map-form: #7f653e;
+$color-host-event: #fff;
+$color-map-form-radio: #6ba3e2;
+$border-color-map-form: #fff;
+$background-map-form-found: #ffe2a7 no-repeat;
+$background-events: #f6f6f6;
+$border-color-events: #fff;
+$color-event-list-submit: #fff;
+$bg-rsvp-form: #ffe2a7 url(arrow_forms.svg) no-repeat center 0;
+
+$bg-headline: #c8a36a; 
+$color-button: #fff; 
+$bg-content-text: #f6f6f6; 
+$bg-form-wrap: #ffe2a7; 
+$bg-reaction-bar: #b66e3a; 
+$bg-form-wrap-button: #6dba84; 
+$color-form-wrap-button: #fff; 
+$color-share-text: #fff;
+$color-reaction-button: #fff;
+$color-footer-nav-ov: #b66e3a;
+$bg-sidebar-user: #f5cc91;
+$border-supporter-pic: #fff;
+$bg-map-form-text: #c8a36a;
+$bg-map-form-button: #6dba84;
+$color-map-form-button: #fff ;
+$bg-map-form: #b66e3a; 
+$shadow-map-form-text: inset 2px 2px 2px 0px #c09c63;
+$color-found-host-event: #ed7800;
+$color-event-venue: #b66e3a;
+$color-footer-link: #e0945d;
+$bg-stepper: #f5cc91;
+$bg-call-tos: #b66e3a;
+$color-form-wrap: #b66e3a; 
+$color-form-wrap-h: #b66e3a;
+$color-label: #b66e3a;
+$color-map-form-h4: #fff;
+$color-pc: #fff;
+$color-name: #000;
+$color-usr-pc: #000;
+$color-go-back: #b66e3a;
+$bg-stat-box: lighten($theme-color-2, 90);
+$br-article-share: 2px solid #ebebeb;
+$br-featured-event: 10px solid #fff;
+$br-featured-event-map: 10px solid #fff;
+$bg-featured-event-button: transparent;
+$br-featured-event-button: 2px solid #fff;
+$bg-sign-in-top: #b66e3a;
+$br-home-excerpt: 10px solid #e2e2e2;
+$bg-feedback-home: #fff;
+
+/* SIDEBAR */
+$color-menu-label: #fff;
+$ico-sidebar-color: #fff;
+
+$br-home-excerpt-text: 1px lighten(#C09C63,2) solid;
+$color-home-excerpt-text: #fff;
+$color-placeholder-text: #6e6148;
+$bread-link-color: #fff;
+$membership-bg: darken(#C8A36A,10);
+$membership-color: #fff;

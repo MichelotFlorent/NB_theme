@@ -1,0 +1,178 @@
+/*  Stylesheet information for CITYZEN - Landscape Variation
+File created date: 19.02.2014
+Last modified date: 10.04.2014
+By: Fer
+*/
+// headline font
+$headline-font: "proxima-nova", Arial, Helvetica, sans-serif;
+// main font
+$font: "proxima-nova", Arial, Helvetica, sans-serif;
+$tisa: "ff-tisa-web-pro", 'Droid Serif', serif;
+$theme-color-1: #f06452; // pink [link color]
+$theme-color-2: #e0d6c8; // off white orange
+$theme-color-3: #fffdbe; // light green
+$theme-color-4: #0097c6; // dark blue
+
+$title-color: $theme-color-1;
+
+// form input area focus color
+$theme-color-5: rgba(123,163,41,.6);
+
+// general success and error colors
+$red: #ff0000;
+$green: #619114;
+
+/* CityZen Vars - do not edit unless you know what you are doing
+--------------------------------------------------------------------------*/
+$bg-body: #eff2f2;
+$background-texture: "background.png";
+$header-texture: "bg_nav_landscape.jpg";
+$header-color: #deb9bf;
+$header-border-color: #f1f1f1;
+$bg-headline: rgba(0,0,0,0.8);
+$topnav_bg: rgba(255,255,255,0.5);
+$color-button: #fff;
+$nav-color: #000;
+$nav-color-hover: $theme-color-1;
+$color-active-menu: #f06452;
+$nav-li-hover-bg: #fff;
+$nav-sub-border-color: #f4f4f4;
+$slider_bottom: #f1f1f1;
+$slider_arrows_bg: #f06452;
+$slider_arrows_border_top: #da5141;
+$h2-color:#fff;
+$h2-headline-color:#181818;
+$bg-text: #208a9b;
+$shadow-text: inset 2px 2px 2px 0px #1d7987;
+$bg-content-text: #fff;
+
+/* CUSTOM */
+$bg-container: #fff url(bg_landscape.png);
+$bg-form-wrap: #2b93a4;
+$bg-reaction-bar: #000; 
+
+/* borders */
+$bd-bottom-color-1: #f1f1f1;
+$bd-bottom-color-2: #f1f1f1;
+
+/* buttons */
+$button-join-bg-color: #fff;
+$button-shadow-color: #f6f6f6;
+$bg-form-wrap-button: #f6f6f6;
+$color-form-wrap-button: #f06452;
+
+$count-in-color: #fff;
+$count-in-bg-color: #298d9d;
+$inner-box-bg-color: transparent;
+$inner-box-border: 2px solid #fff;
+$inner-box-shadow: none;
+$count-in-bg-image: url(bg_box_landscape.png);
+$bg-count-in-text: #0e8596;
+$color-count-in-text: #fff;
+$border-color-count-in-text: transparent;
+$button-count-in-shadow: none;
+$button-count-in-shadow-ov: none;
+$border-latest-updates-box: 4px solid #2b93a4;
+$button-join-color: #2b93a4;
+
+$share-container-color: lighten(#2B93A4,5);
+$color-share-text: #fff;
+$color-reaction-button: #ffeac7;
+
+$bg-latest-updates: #fff url(bg_landscape.png);
+$color-h2-latest-updates: #2b93a4;
+$bg-article-latest-updates: #fff;
+$shadow-article-latest-updates: none;
+$border-article-latest-updates: 4px solid #2b93a4;
+
+$border-article: 10px solid #fff;
+$share-icons: 'share-icons2.svg';
+$bg-latest-updates-button: #2b93a4;
+$bg-featured-event: #f06452;
+$bg-vol-contact: #2B93A4;
+$color-vol-contact: #fff;
+$color-vol-contact-2: #fff;
+$color-vol-contact-label: #fff;
+$bg-vol-contact-box: #2b93a4;
+$border-vol-contact-box: 0 none;
+$bg-vol-contact-form-box: #2b93a4;
+$hr-vol-contact: #44aec0;
+$hr-vol-feedback: #44aec0;
+$h2-vol-contact-weight: 300;
+$shadow-volunteer-home: rgba(0,0,0,0.3) 0 1px;
+
+$bg-feedback-home-button: #fff;
+$color-feedback-home-button: #f06452;
+
+$bg-footer-color: #2b93a4;
+$color-footer: #fff;
+$border-footer-color: #008091;
+$bg-footer-menu-color: #2e9fb1;
+$border-footer-menu-item-color: #008091;
+$color-footer-nav-ov: #f06452;
+$color-footer-nav: #fff;
+
+$sidebar_bg: #2b93a4;
+$sidebar_border: 10px solid #fff;
+$bg-sidebar-user: #208a9b;
+$border-supporter-pic: #f06452;
+
+$background-breadcumbs: rgba(255,255,255, 0.1);
+$intro-border-top: 10px #fff solid;
+$bg-post-bar: #2e9fb1;
+$color-byline: #fff;
+$bg-share-button: #000 no-repeat 95%;
+$color-post-bar-share-container: #fff;
+$color-reactions-bar: #fff;
+$color-addreaction: #fffdbe;
+$border-top-reactions: 1px dashed #fff;
+$bg-activities: #2b93a4;
+$color-activities: #fff;
+$bg-activities-item: #405c91;
+$shadow-map-form: #b6594c;
+$color-host-event: #fff;
+$color-map-form-radio: #6ba3e2;
+$bg-map-form: #f06452;
+$shadow-map-form-text: inset 2px 2px 2px 0px #bf4e3f;
+$bg-map-form-text: #db5948;
+$bg-map-form-button: #fff;
+$color-map-form-button: #f06452;
+$border-color-map-form: #fff;
+$color-found-host-event: #ffeac7; 
+$background-map-form-found: #ff7d67 url("ico_information.svg") no-repeat;
+$background-events: #f6f6f6;
+$border-color-events: #fff;
+$color-event-list-submit: #fff;
+$bg-rsvp-form: #2b93a4 url(arrow_forms.svg) no-repeat center 0;
+$color-event-venue: #2b93a4;
+$color-footer-link: #f06452;
+$bg-stepper: #1b8a9b;
+$bg-call-tos: #2e9fb1;
+$color-form-wrap: #fff; 
+$color-form-wrap-h: #fff;
+$color-label: #fff;
+$color-map-form-h4: #fff;
+$color-pc: #000;
+$color-name: #fff;
+$color-usr-pc: #fff;
+$color-go-back: #ffeac7;
+$bg-stat-box: lighten($theme-color-2, 10);
+$br-article-share: 2px solid #ebebeb;
+$br-featured-event: 10px solid #fff;
+$br-featured-event-map: 10px solid #fff;
+$bg-featured-event-button: transparent;
+$br-featured-event-button: 2px solid #fff;
+$bg-sign-in-top: #208a9b;
+$br-home-excerpt: 10px solid #e2e2e2;
+$bg-feedback-home: #2b93a4;
+
+/* SIDEBAR */
+$color-menu-label: #fff;
+$ico-sidebar-color: #fff;
+
+$br-home-excerpt-text: 1px lighten(#1D7987,2) solid;
+$color-home-excerpt-text: #fff;
+$color-placeholder-text: #17272a;
+$bread-link-color: $theme-color-1;
+$membership-bg: #2B93A4;
+$membership-color: #fff;

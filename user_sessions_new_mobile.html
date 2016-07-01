@@ -1,0 +1,147 @@
+<div class="padcontainer">
+<div class="content_container">
+
+<div class="form_wrap">
+<div class="form">
+
+    {% if request.sorta_logged_in? and request.current_signup.has_password? == true %}
+      <h2>Veuillez vérifier votre mot de passe</h2>
+    {% elsif request.sorta_logged_in? and request.current_signup.has_password? == false %}
+      <h2>Veuillez activer votre compte {% if request.current_signup.has_facebook_info? %}, ou <a href="{{ request.facebook_connect_url }}">vous connecter avec Facebook</a>.{% else %}.{% endif %}</h2>
+    {% else %}
+      <h2>Se connecter avec Facebook ou Twitter</h2>
+    {% endif %}
+
+
+{% if request.sorta_logged_in? and request.current_signup.has_password? == true %}
+  <!-- let's verify their password -->
+
+  {% form_for user_session autocomplete:off %}
+
+  	<div class="form_errors">{% error_messages_for user_session %}</div>
+
+        {% hidden_field_tag "user_session[email]", request.current_signup.email %}
+
+        <p><label for="user_session_password">Mot de passe</label><br>{% password_field "password", class:"text" %}</p>
+
+          {% submit_tag "Se connecter avec un mot de passe", class:"submit-button" %}
+          <div class="form_submit"></div>
+
+        <div class="padtopmore">
+      	  <a href="{{ request.new_password_reset_url }}">Vous avez oublié votre mot de passe?</a>
+      	</div>
+
+      	 {% if request.current_signup.has_facebook_info? or request.current_signup.has_twitter_info? %}
+             <div align="center">
+               <div class="padtop padbottom">
+              Ou connectez-vous avec {% if request.current_signup.has_facebook_info? %}Facebook{% endif %} {% if request.current_signup.has_twitter_info? %}ou Twitter{% endif %}
+               </div>
+              {% if request.current_signup.has_facebook_info? %}
+                <a href="{{ request.facebook_connect_url }}"><img src="{{ "signin_with_facebook.png" | asset_path }}" style="margin-right: 5px;" /></a>
+              {% endif %}
+              {% if request.current_signup.has_twitter_info? %}
+                <a href="{{ request.twitter_connect_url }}"><img src="{{ "signin_with_twitter.png" | asset_path }}" style="margin-left: 5px;" /></a>
+              {% endif %}
+              </div>
+          {% endif %}
+
+        <div align="center" class="padtop">
+      	  Si vous n'êtes pas {{ request.current_signup.name_or_email }}, <a href="{{ request.current_signup.logout_url }}">cliquez ici</a>.
+      	</div>
+
+
+  {% endform_for %}
+
+{% elsif request.sorta_logged_in? and request.current_signup.has_password? == false %}
+  <!-- let's create an account -->
+
+  {% if request.current_signup.has_facebook_info? or request.current_signup.has_twitter_info? %}
+    <div class="padtopmore">
+      {% if request.current_signup.has_facebook_info? %}
+        <div class="padtopless">
+        <a href="{{ request.facebook_connect_url }}"><img src="{{ "signin_with_facebook.png" | asset_path }}"></a>
+        </div>
+      {% endif %}
+      {% if request.current_signup.has_twitter_info? %}
+        <div class="padtopless">
+        <a href="{{ request.twitter_connect_url }}"><img src="{{ "signin_with_twitter.png" | asset_path }}"></a>
+        </div>
+      {% endif %}
+      <div class="padtop">ou...</div>
+    </div>
+  {% endif %}
+
+  {% form_for account %}
+
+  {% hidden_field_tag "account[email]", request.current_signup.email %}
+
+	<div class="padtopmore">
+	  {% submit_tag "Envoyer les instructions pour activer le compte" , class:"submit-button" %}
+	  <div class="form_submit"></div>
+	</div>
+
+	{% endform_for %}
+
+	<div class="padtop">
+	  Si vous n'êtes pas {{ request.current_signup.name_or_email }}, <a href="{{ request.current_signup.logout_url }}">cliquez ici</a>.
+	</div>
+
+{% else %}
+
+  <!-- start from scratch -->
+
+  <div class="padtop">Vous aurez besoin de garantir l'accès à NationBuilder si vous ne l'avez pas déjà fait.</div>
+
+  <div class="padtop">
+  <a href="{{ request.facebook_connect_url }}"><img src="{{ "signin_with_facebook.png" | asset_path }}"  /></a>
+	</div>
+	<div class="padtop">
+  <a href="{{ request.twitter_connect_url }}"><img src="{{ "signin_with_twitter.png" | asset_path }}"  /></a>
+  </div>
+
+	<hr />
+
+  <h2>Ou connectez-vous avec votre adresse courriel</h2>
+
+  {% form_for user_session autocomplete:off %}
+
+  	<div class="form_errors">{% error_messages_for user_session %}</div>
+
+    <p><label for="user_session_email">Adresse courriel</label><br>{% email_field "email", class:"text", type:"email" %}</p>
+
+    <p><label for="user_session_password">Mot de passe</label><br>{% password_field "password", class:"text" %}</p>
+
+    <p><label for="user_session_remember_me">{% check_box "remember_me", class:"checkbox" %} Se souvenir de moi</label></p>
+
+  	  {% submit_tag "Se connecter avec votre courriel", class:"submit-button" %}
+  	  <div class="form_submit"></div>
+
+    <div class="padtopmore">
+  	  <a href="{{ request.new_password_reset_url }}">Vous avez oublié votre mot de passe?</a>
+  	</div>
+
+  {% endform_for %}
+
+<hr />
+
+  {% form_for account %}
+
+  <h2>Créez votre compte</h2>
+
+  	<div class="form_errors">{% error_messages_for account %}</div>
+
+    <p><label for="account_email">Adresse courriel</label><br>{% email_field "email", class:"text", type:"email" %}</p>
+
+  	  {% submit_tag "Envoyez l'activation du compte", class:"submit-button" %}
+  	  <div class="form_submit"></div>
+
+
+  {% endform_for %}
+
+{% endif %}
+
+</div>
+</div>
+
+</div>
+</div>

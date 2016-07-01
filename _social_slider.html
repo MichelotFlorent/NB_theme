@@ -1,0 +1,66 @@
+{% if page.type_name == "Contribution" %}
+{% assign activity_type = "Contribution" %}
+{% assign ignore_types = "Annulation de contribution | Suppression de contribution " | split: "|" %}
+{% assign activity_title = "Qui est un contributeur?" %}
+{% elsif page.type_name == "Soutiens" %}
+{% assign activity_type = "Soutiens" %}
+{% assign ignore_types = "" %}
+{% assign activity_title = "Qui est un soutien?" %}
+{% elsif page.type_name == "Événemnt" %}
+{% assign activity_type = "Participation à un événement" %}
+{% assign ignore_types = "Annulation de la participation à un événement" %}
+{% assign activity_title = "Qui viendra?" %}
+{% elsif page.type_name == "Campagne de financement" %}
+{% assign activity_type = "Promesse" %}
+{% assign ignore_types = "¨Promesse annulée" %}
+{% assign activity_title = "Qui promet?" %}
+{% elsif page.type_name == "Pétition" %}
+{% assign activity_type = "Signature de pétition" %}
+{% assign ignore_types = "" %}
+{% assign activity_title = "Qui signe?" %}
+{% elsif page.type_name == "Signature" %}
+{% assign activity_type = "Signature" %}
+{% assign ignore_types = "" %}
+{% assign activity_title = "Qui se joint? %}
+{% elsif page.type_name == "Inscription de b&eacute;n&eacute;vole" %}
+{% assign activity_type = "Inscription de b&eacute;n&eacute;vole" %}
+{% assign ignore_types = "Départ de b&eacute;n&eacute;vole" %}
+{% assign activity_title = "Qui est b&eacute;n&eacute;vole?" %}
+{% elsif page.type_name == "Promesse de vote" %}
+{% assign activity_type = "Promesse de vote OUI" %}
+{% assign ignore_types = "Promesse de vote annulée" %}
+{% assign activity_title = "Qui promet de voter?" %}
+{% endif %}
+
+{% if activity_type %}
+{% assign ignore_list = "" %}
+<h4>{{ activity_title }}</h4>
+<div id="slider-cards">
+  <div class="slider-card-wrap">
+    {% for activity in page.activities %}
+      {% for ignore_type in ignore_types %}
+        {% if ignore_type == activity.type_name %}
+          {% capture ignore_list %}{{ ignore_list }}{{ activity.signup.id | append: "|" }}{% endcapture %}
+        {% endif %}
+      {% endfor %}
+      {% capture current_signup %}{{ activity.signup.id | append: "|" }}{% endcapture %}
+      {% unless ignore_list contains current_signup %}
+        {% if activity_type == activity.type_name %}
+        <div class="slider-card" data-id="{{ activity.signup.profile_url }}">
+          <div class="slider-card-profile clearfix">
+            {{ activity.signup.profile_image }}
+            <span class="slider-name">
+              {% if activity.data.is_organization == true %}
+              {{ activity.signup.employer }}
+              {% else %}
+              {{ activity.signup.published_name_linked }}
+              {% endif %}
+            </span>
+          </div>
+        </div>
+        {% endif %}
+      {% endunless %}
+    {% endfor %}
+  </div>
+</div>
+{% endif %}

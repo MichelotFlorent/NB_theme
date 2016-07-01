@@ -1,0 +1,190 @@
+<div class="form-wrap">
+
+  {% if request.sorta_logged_in? and request.current_signup.has_password? == true %}
+  <h2>Veuillez vérifier votre mot de passe</h2>
+  {% elsif request.sorta_logged_in? and request.current_signup.has_password? == false %}
+  <h2>Veuillez activer votre compte{% if request.current_signup.has_facebook_info? %}, ou
+    <a href="{{ request.facebook_connect_url }}">vous connecter avec Facebook</a>.{% else %}.{% endif %}</h2>
+  {% else %}
+  <h2>Se connecter avec Facebook ou Twitter</h2>
+  {% endif %}
+
+  {% if request.sorta_logged_in? and request.current_signup.has_password? == true %}
+
+  {% form_for user_session autocomplete:off %}
+
+  <div class="form-errors">{% error_messages_for user_session %}</div>
+
+  {% hidden_field_tag "user_session[email]", request.current_signup.email %}
+
+  <p><label for="user_session_password">Mot de passe</label><br>{% password_field "password", class:"text" %}</p>
+
+  {% submit_tag "Se connecter avec un mot de passe", class:"submit-button" %}
+  <div class="form-submit"></div>
+
+  <div class="padtopmore">
+    <a href="{{ request.new_password_reset_url }}">Vous avez oublié votre mot de passe?</a>
+  </div>
+
+  {% if request.current_signup.has_facebook_info? or request.current_signup.has_twitter_info? %}
+  <div class="center">
+    <div class="padtop padbottom">
+      <hr>
+      <div class="orsignin_wrap">
+        <span id="orsignin">Ou connectez-vous avec {% if request.current_signup.has_facebook_info? %}Facebook{% endif %} {% if request.current_signup.has_twitter_info? %}ou Twitter{% endif %}</span>
+      </div>
+    </div>
+    {% if request.current_signup.has_facebook_info? %}
+    <a href="{{ request.facebook_connect_url }}"><img src="{{ "signin_with_facebook.png" | asset_path }}" style="margin-right: 5px;" /></a>
+    {% endif %}
+    {% if request.current_signup.has_twitter_info? %}
+    <a href="{{ request.twitter_connect_url }}"><img src="{{ "signin_with_twitter.png" | asset_path }}" style="margin-left: 5px;" /></a>
+    {% endif %}
+  </div>
+  {% endif %}
+
+  <div class="center padtop">
+    Si vous n'êtes pas {{ request.current_signup.name_or_email }},
+    <a href="{{ request.current_signup.logout_url }}">cliquez ici</a>.
+  </div>
+
+
+  {% endform_for %}
+
+  {% elsif request.sorta_logged_in? and request.current_signup.has_password? == false %}
+
+  {% if request.current_signup.has_facebook_info? or request.current_signup.has_twitter_info? %}
+  <div class="padtopmore">
+    {% if request.current_signup.has_facebook_info? %}
+    <div class="padtopless">
+      <a href="{{ request.facebook_connect_url }}"><img src="{{ "signin_with_facebook.png" | asset_path }}"></a>
+    </div>
+    {% endif %}
+    {% if request.current_signup.has_twitter_info? %}
+    <div class="padtopless">
+      <a href="{{ request.twitter_connect_url }}"><img src="{{ "signin_with_twitter.png" | asset_path }}"></a>
+    </div>
+    {% endif %}
+    <div class="padtop">ou...</div>
+  </div>
+  {% endif %}
+
+  {% form_for account %}
+
+  {% hidden_field_tag "account[email]", request.current_signup.email %}
+
+  <div class="padtopmore">
+    {% submit_tag "Envoyer les instructions pour activer le compte" , class:"submit-button" %}
+    <div class="form-submit"></div>
+  </div>
+
+  {% endform_for %}
+
+  <div class="padtop">
+    Si vous n'êtes pas {{ request.current_signup.name_or_email }},
+    <a href="{{ request.current_signup.logout_url }}">cliquez ici</a>.
+  </div>
+
+  {% else %}
+
+
+  <div class="center">
+
+    <div class="padtopmore">
+
+      <div class="signin-with-facebook">
+        <a title="Se connecter avec Facebook" href="{{ request.facebook_connect_url }}"><img src="{{ "signin_with_facebook.png" | asset_path }}" alt="Se connecter avec Facebook"></a>
+      </div>
+      <div class="signin-with-twitter">
+        <a title="Se connecter avec Twitter" href="{{ request.twitter_connect_url }}"><img src="{{ "signin_with_twitter.png" | asset_path }}" alt="Se connecter avec Twitter"></a>
+      </div>
+
+    </div>
+
+    <hr/>
+
+    <h3 class="desktop-visible padbottommore">Ou connectez-vous avec votre adresse courriel</h3>
+
+    <div class="mobile-visible padbottommore">Ou connectez-vous avec votre adresse courriel</div>
+  </div>
+
+  <div class="row-fluid padtopmore">
+    <div class="span11 offset1">
+
+      <div class="row-fluid">
+        <div class="span5">
+
+          <div class="row-fluid">
+
+            <div class="span12"><h4 class="padbottommore">J'ai déjà un compte</h4></div>
+
+          </div>
+
+          {% form_for user_session autocomplete:off %}
+
+          <div class="row-fluid">
+
+            <div class="span12">
+              <div class="form-errors">{% error_messages_for user_session %}</div>
+              <label for="user_session_email">Adresse courriel</label>{% email_field "email", class:"text" %}
+            </div>
+
+          </div>
+
+          <div class="row-fluid">
+
+            <div class="span12">
+              <label for="user_session_password">Mot de passe</label>{% password_field "password", class:"text" %}
+            </div>
+
+          </div>
+
+          <div class="row-fluid">
+
+            <div class="span12">
+              <label for="user_session_remember_me" class="checkbox">{% check_box "remember_me", class:"checkbox" %} Se souvenir de moi</label>
+            </div>
+
+          </div>
+
+          <div class="row-fluid">
+
+            <div class="span12">{% submit_tag "Se connecter avec votre courriel", class:"submit-button" %}
+              <div class="form-submit"></div>
+            </div>
+
+          </div>
+
+          <div class="padtop">
+            <small><a href="{{ request.new_password_reset_url }}">Vous avez oublié votre mot de passe?</a></small>
+          </div>
+
+
+          {% endform_for %}
+
+        </div>
+
+        <div class="span5 offset1">
+          <hr class="mobile-visible"/>
+          <h4 class="padbottommore">Créer un compte</h4></div>
+
+        {% form_for account %}
+
+        <div class="span5 offset1">
+          <div class="form-errors">{% error_messages_for account %}</div>
+          <label for="account_email">Adresse courriel</label>{% email_field "email", class:"text" %}
+        </div>
+
+        <div class="span5 offset1">{% submit_tag "Demander la création d'un compte", class:"submit-button" %}
+          <div class="form-submit"></div>
+        </div>
+
+        {% endform_for %}
+
+      </div>
+    </div>
+  </div>
+
+  {% endif %}
+
+</div>

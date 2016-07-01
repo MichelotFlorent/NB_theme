@@ -1,0 +1,11 @@
+{{recipient.first_name}}
+<br /><br />
+Nous souhaitons vous informer que vous avez été l'objet d'un signalement pour une infraction à une règle du site. Nous espérons que vous prendrez quelques minutes pour réviser la <a href="{{ site.rule_page.full_url }}">page de règlement</a> afin d'éviter ce genre d'infractions à l'avenir. Nous vous remercions d'être un membre actif de notre communauté et nous espérons que vous continuerez d'y aprticiper.
+En vous remerciant de votre compréhension.
+<br/><br/>
+{% if site.has_rule_page? %}
+<a href="{{ site.rule_page.full_url }}">{{ site.rule_page.full_url }}</a>
+<br/><br/>
+{% endif %}
+{{ broadcaster.name }}<br/>
+<a href="{{ site.full_url }}">{{ site.full_url }}</a><br/>

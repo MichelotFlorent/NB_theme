@@ -1,0 +1,205 @@
+<div id="content" class="clearfix">
+  
+  {% if page.volunteer_signup.content.size > 0 %}
+  <div id="intro" class="intro">
+    {{ page.volunteer_signup.content }}
+  </div>
+  {% endif %}
+
+  {% if page.show_social_slider? and page.public_activities_count > 0 %}
+  {% include "social_slider" %}
+  {% endif %}
+  
+  <div class="form-wrap">
+    <div class="form">
+      
+      {% if request.sorta_logged_in? %}
+      
+      {% if request.current_signup.is_volunteer? %}
+      <h4>Bonjour {{ request.current_signup.name_or_email }}, nous avons déjà la chance de vous compter parmi nos bénévoles.</h4>
+      
+      <div class="padtop">
+        Vous pouvez mettre à jour vos informations ci-dessous.
+      </div>
+      {% else %}
+      <h4>Bonjour {{ request.current_signup.name_or_email }}, souhaitez-vous être bénévole?</h4>
+      {% endif %}
+      
+      {% if request.logged_in? == false %}
+      <div class="padtop">
+        Si vous n'êtes pas {{ request.current_signup.name_or_email }},
+        <a href="{{ request.current_signup.logout_url }}">cliquez ici</a>.
+      </div>
+      {% endif %}
+      
+      {% else %}
+      
+      <h4>Souhaitez-vous devenir bénévole?</h4>
+      
+      {% endif %}
+      
+      {% form_for volunteer_signup %}
+      
+      <div class="form-errors">{% error_messages_for volunteer_signup %}</div>
+      
+      <div class="padtopmore">
+        {% for volunteer_type in page.volunteer_signup.volunteer_types %}
+        <div class="row-fluid">
+          <div class="span12"><label class="checkbox">
+            {% check_box_tag 'volunteer_signup[volunteer_type_ids][]', volunteer_type.id, collection:volunteer_signup.volunteer_type_ids, member:volunteer_type.id, class:"checkbox" %}
+            {{ volunteer_type.name }}
+            </label></div>
+        </div>
+        {% endfor %}
+      </div>
+      {% hidden_field_tag 'volunteer_signup[volunteer_type_ids][]', '' %}
+      
+      {% if request.sorta_logged_in? == false or request.current_signup.has_name? == false %}
+      <div class="row-fluid">
+        <div class="span6">
+          <label for="volunteer_signup_first_name">Prénom</label>{% text_field "first_name", class:"text" %}
+        </div>
+        <div class="span6">
+          <label for="volunteer_signup_last_name">Nom de famille</label>{% text_field "last_name", class:"text" %}
+        </div>
+      </div>
+      {% endif %}
+      
+      {% if request.sorta_logged_in? == false %}
+      <div class="row-fluid">
+        <div class="span6"><label for="volunteer_signup_email">Courriel</label>{% email_field "email", class:"text" %}
+        </div>
+        {% if site.ask_for_mobiles? %}
+        <div class="span6">
+          <label for="volunteer_signup_mobile_number">Téléphone cellulaire (optionnel)</label>{% phone_field "mobile_number", class:"text" %}
+        </div>
+        {% endif %}
+      </div>
+      
+      <div class="row-fluid">
+        <div class="span6">
+          <label class="checkbox" for="volunteer_signup_email_opt_in">{% check_box "email_opt_in", class:"checkbox" %} Recevoir des notifications par courriel</label>
+        </div>
+        {% if site.ask_for_mobiles? %}
+        <div class="span6">
+          <label class="checkbox" for="volunteer_signup_mobile_opt_in">{% check_box "mobile_opt_in", class:"checkbox" %} Recevoir des notifications par messages texte</label>
+        </div>
+        {% endif %}
+      </div>
+      {% endif %}
+      
+  
+ <div class="row-fluid">
+  <div class="span6">  
+		<label for="signup_custom_values_{{ custom_field.membre_pq }}_custom">Êtes-vous membre du Parti québécois?</label>{% collection_select "signup.custom_values.circonscription", custom_fields.signup.membre_pq.multiple_choice_options %}
+  </div>
+    <div class="span6">   
+    <label for="signup_custom_values_{{ custom_field.instance }}_custom">Si oui, dans quelle instance militez-vous principalement?</label>{% collection_select "signup.custom_values.instance", custom_fields.signup.instance.multiple_choice_options %}
+  </div>
+</div>
+ 
+       <div class="row-fluid">
+        <div class="span12">
+          <label for="signup_custom_values_{{ custom_field.experience }}_custom">Avez-vous de l’expérience en organisation?
+(politique, sociale, syndicale, étudiante, etc.)</label>
+          <input class="text user-success" id="volunteer_signup_availability" name="volunteer_signup[signup][custom_values][experience]" type="text" aria-invalid="false">
+        </div>
+      </div>
+      
+<div class="row-fluid">
+  <div class="span6">  
+    <label for="signup_custom_values_{{ custom_field.circonscription }}_custom">Circonscription</label>{% collection_select "signup.custom_values.circonscription", custom_fields.signup.circonscription.multiple_choice_options %}
+  </div>
+<div class="span6" style="margin-top: 20px;
+text-align: justify;
+line-height: 1em;
+font-size: 0.9em;">  
+   Si vous ne vous souvenez plus du nom de votre circonscription, vous pouvez l'identifier grâce à votre code postal en vous rendant sur le <a href="http://www.electionsquebec.qc.ca/francais/provincial/carte-electorale/trouvez-votre-circonscription-2011.php" target="_blank">site du Directeur général des élections</a>.</div>
+</div>
+      
+      
+      
+      {% if page.volunteer_signup.is_phone? %}
+      <div class="row-fluid">
+        <div class="span6">
+          <label for="volunteer_signup_phone_number">Téléphone</label>{% phone_field "phone_number", class:"text" %}
+        </div>
+        <div class="span6">
+          <label for="volunteer_signup_phone_time">Quel est le meilleur moment pour vous appeler?</label>{% text_field "phone_time", class:"text" %}
+        </div>
+      </div>
+      {% endif %}
+      
+      {% if page.volunteer_signup.is_address? %}
+      {% if request.sorta_logged_in? == false or request.current_signup.has_full_address? == false %}
+      <div class="row-fluid">
+        <div class="span12">
+          <label for="volunteer_signup_submitted_address">Adresse (rue, ville, province, code postal)</label>{% text_field "submitted_address", class:"text" %}
+        </div>
+      </div>
+      {% endif %}
+      {% endif %}
+      
+      <div class="row-fluid">
+        <div class="span12">
+          <label for="volunteer_signup_availability">Quand êtes-vous disponible?</label>{% text_field "availability", class:"text" %}
+        </div>
+      </div>
+      
+      <div class="row-fluid">
+        <div class="span12">
+          <label for="volunteer_signup_content">Commentaires, idées, suggestions, etc. (optionnel)</label>{% text_area "content", class:"textarea autogrow" %}
+        </div>
+      </div>
+      
+      {% if site.ask_to_publish_to_stream? %}
+      <div class="row-fluid">
+        <div class="span12">
+          <label class="checkbox" for="volunteer_signup_is_private">{% check_box "is_private", class:"checkbox" %} Ne pas publier ces commentaires, idées ou suggestions sur le site web</label>
+        </div>
+      </div>
+      {% endif %}
+      
+      <div class="row-fluid">
+        Nous souhaitons une campagne qui reflète le Québec dans sa diversité. Si vous le souhaitez, indiquez 
+  <div class="span6">  
+    <label for="signup_custom_values_{{ custom_field.diversite }}_custom">... si vous êtes :</label>{% collection_select "signup.custom_values.diversite", custom_fields.signup.diversite.multiple_choice_options %}
+  </div>
+         <div class="span6">
+           <label for="signup_custom_values_{{ custom_field.origine }}_custom">... de quel pays ou communauté  vous êtes originaire :</label>
+          <input class="text user-success" id="volunteer_signup_availability" name="volunteer_signup[signup][custom_values][origine]" type="text" aria-invalid="false">
+        </div>
+      </div>
+      
+      {% submit_tag "Sauvegarder vos informations de bénévolat", class:"submit-button" %}
+      <div class="form-submit"></div>
+      
+      {% endform_for %}
+      
+    </div>
+  </div>
+</div>  
+  {% if page.tags_count > 0 %}
+  <div id="page-tags" class="page-tags">
+    {% include "page_tags" with page %}
+  </div>
+  {% endif %}
+  
+  <div class="like-page padbottom">
+    <strong>Diffuser cette page autour de vous :</strong>
+    <br/><span class='st_sharethis_large' displayText='ShareThis'></span>
+<span class='st_facebook_large' displayText='Facebook'></span>
+<span class='st_twitter_large' displayText='Tweet'></span>
+<span class='st_googleplus_large' displayText='Google +'></span>
+<span class='st_linkedin_large' displayText='LinkedIn'></span>
+<span class='st_pocket_large' displayText='Pocket'></span>
+<span class='st_reddit_large' displayText='Reddit'></span>
+<span class='st_email_large' displayText='Email'></span>
+<span class='st__large' displayText=''></span>
+  </div>
+  
+  {% if page.show_stream? %}
+  {% include "page_stream" %}
+  {% endif %}
+  
+

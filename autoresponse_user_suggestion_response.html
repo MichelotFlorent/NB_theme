@@ -1,0 +1,15 @@
+{{recipient.first_name}}
+<br/><br/>
+Nous vous informons que {{ tagging.signup.published_name }} a mentionné votre proposition « {{ page.headline }} » avec {{ tagging.tag.name }}.
+{% if tagging.author.is_profile_published? %}
+<br/><br/>
+Apprenez en plus sur {{ tagging.author.published_name }} ici :<br/>
+<a href="{{ tagging.author.full_profile_url }}">{{ tagging.author.full_profile_url }}</a>
+{% endif %}
+<br/><br/>
+Voici le lien vers votre proposition 
+<br/>
+<a href="{{ page_url }}">{{ page_url }}</a>
+<br/><br/>
+{{ broadcaster.name }}<br/>
+<a href="{{ site.full_url }}">{{ site.full_url }}</a><br/>

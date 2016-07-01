@@ -1,0 +1,44 @@
+<div id="content" class="blog clearfix">
+  
+  <div class="post-bar">
+
+    <div class="byline">
+      {{ page.published_at | date: '%d/%n/%Y' }} | 
+      
+      {% if page.has_author? %}
+      Contact : <span class="n">{{ page.author.published_name }}</span> | 
+      {{ page.author.phone_number }} | 
+      {{ page.author.email | enkode_email }}
+      {% endif %}
+  	</div>
+    
+  </div>
+  
+  <div id="intro" class="page-excerpt clearfix">
+    {{ page.press_release.content }}
+
+    <div class="like-page">
+      <strong>Aimez-vous cette publication?</strong>
+      <br/><span class='st_sharethis_large' displayText='ShareThis'></span>
+<span class='st_facebook_large' displayText='Facebook'></span>
+<span class='st_twitter_large' displayText='Tweet'></span>
+<span class='st_googleplus_large' displayText='Google +'></span>
+<span class='st_linkedin_large' displayText='LinkedIn'></span>
+<span class='st_pocket_large' displayText='Pocket'></span>
+<span class='st_reddit_large' displayText='Reddit'></span>
+<span class='st_email_large' displayText='Email'></span>
+<span class='st__large' displayText=''></span>
+    </div>
+  </div>
+  
+  {% if page.tags_count > 0 %}
+  <div id="page-tags" class="page-tags">
+    {% include "page_tags" with page %}
+  </div>
+  {% endif %}
+
+</div>
+
+{% if page.show_stream? %}
+{% include "page_stream" %}
+{% endif %}

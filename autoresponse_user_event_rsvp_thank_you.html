@@ -1,0 +1,26 @@
+{{recipient.first_name}}
+<br/><br/>
+Nous vous remercions pour votre réponse {% if event_rsvp.guests_count > 0 %} +{{ event_rsvp.guests_count }}{% endif %} pour {{ page.parent.name }} {{ page.parent.calendar.event_name | downcase }}.
+<br/><br/>
+Cette activité a été publi&eacute;e par {{ page.event.contact_name }}. Veuillez le contacter si vous avez une question.
+<br/><br/>
+Hôte : {{ page.event.contact_name }} <br/>
+Courriel : {{ page.event.contact_email }}<br/>
+Téléphone : {{ page.event.contact_phone }}<br/>
+<br/>
+{% include "mailing_event" %}
+<br/><br/>
+{% if page.event.content.size > 0 %}
+{{ page.event.content_for_mailinng }}
+<br/><br/>
+{% endif %}
+Si vous souhaitez mettre à jour ou annuler votre réponse, veuillez utiliser ce lien :
+<br/><br/>
+<a href="{{ edit_url }}">{{ edit_url }}</a>
+<br/><br/>
+Vous pouvez aussi inviter vos amis et connaissances à se joindre à cet événement grâce à ce lien :
+<br/><br/>
+<a href="{{ page_url }}">{{ page_url }}</a>
+<br/><br/>
+{{ broadcaster.name }}<br/>
+<a href="{{ site.full_url }}">{{ site.full_url }}</a><br/>

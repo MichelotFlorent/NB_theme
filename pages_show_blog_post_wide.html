@@ -1,0 +1,55 @@
+<div id="content" class="blog">
+
+  <div class="post-bar">
+    <div class="byline">
+      Publi&eacute; par {{ page.author.published_name_linked }} {{ page.published_at | date: '%d/%m/%Y, à %I:%M %p' }}
+    </div>
+    <div class="share-button">
+      {{ "Partager" | share_button page_id: page.id }}
+    </div>
+    {% if post.show_stream? %}
+    <div class="reactions">
+      <a href="{{ post.url }}#addreaction" class="button small-button">
+        {% if post.public_activities_count > 0 %}
+        <span class="ico_chat_post">{{ page.public_activities_count }} réaction{% if post.public_activities_count > 1 %}s{% endif %}</span>
+        {% else %}
+        <span class="ico_chat_post">Commentez</span>
+        {% endif %}
+      </a>
+    </div>
+    {% endif %}
+  </div>
+  
+  <div id="intro" class="page-excerpt clearfix">
+    <div class="headline">
+      <h2>{{ page.headline }}</h2>
+    </div>    
+    <div class="content">
+      {{ page.blog_post.content_full }}
+    </div>
+    
+    {% if page.tags_count > 0 %}
+    <div class="page-tags">
+      {% include "page_tags" with page %}
+    </div>
+    {% endif %}
+  	
+    <div class="like-page">
+      <strong>Vous aimez cette publication?</strong>
+      <br/><span class='st_sharethis_large' displayText='ShareThis'></span>
+<span class='st_facebook_large' displayText='Facebook'></span>
+<span class='st_twitter_large' displayText='Tweet'></span>
+<span class='st_googleplus_large' displayText='Google +'></span>
+<span class='st_linkedin_large' displayText='LinkedIn'></span>
+<span class='st_pocket_large' displayText='Pocket'></span>
+<span class='st_reddit_large' displayText='Reddit'></span>
+<span class='st_email_large' displayText='Email'></span>
+<span class='st__large' displayText=''></span>
+    </div>  
+  </div>
+
+  {% if page.show_stream? %}
+  {% include "page_stream" %}
+  {% endif %}
+
+</div>

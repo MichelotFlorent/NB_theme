@@ -1,0 +1,16 @@
+{{recipient.first_name}}
+<br /><br />
+Nous vous remercions de votre réservation{% if event_rsvp.guests_count > 0 %} +{{ event_rsvp.guests_count }}{% endif %}.
+<br/><br/>
+{% include "mailing_event" %}
+<br/><br/>
+Si vous souhaitez la mettre à jour ou l'annuler, veuillez utiliser ce lien :
+<br/><br/>
+<a href="{{ edit_url }}">{{ edit_url }}</a>
+<br/><br/>
+Vous pouvez aussi inviter vos proches à cet événement en utilisant ce lien :
+<br/><br/>
+<a href="{{ page_url }}">{{ page_url }}</a>
+<br/><br/>
+{{ broadcaster.name }}<br/>
+<a href="{{ site.full_url }}">{{ site.full_url }}</a><br/>

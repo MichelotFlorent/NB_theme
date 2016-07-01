@@ -1,0 +1,20 @@
+{{recipient.first_name}}
+<br /><br />
+Nous vous remercions d'être devenu membre de {{ site.name }}.
+<br /><br />
+Votre type d'adhésion est : {{ paid_membership_page_level.membership_level_name }}.
+<br /><br />
+Votre adhésion échoira le : {{ recipient.membership_expires_at | date_to_long_string }}.
+<br/><br/>
+
+{% if paid_membership_page_level.auto_renew? %}
+  Votre adhésion sera renouvelée automatiquement.
+  <br/><br/>
+{% endif %}
+
+{{ broadcaster.name }}<br/>
+{{ site.full_url }}<br/>
+<br/><br/>
+<b>{{ page.headline }}</b>
+<br/><br/>
+Devenez membre en cliquant ici : <a href="{{ page.full_url_with_recruiter }}">{{ page.full_url_with_recruiter }}</a>

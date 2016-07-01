@@ -1,0 +1,20 @@
+{{recipient.first_name}}
+<br/><br/>
+{{ event_rsvp.signup.name_or_email }} vient d'ANNULER sa participation{% if event_rsvp.guests_count > 0 %} +{{ event_rsvp.guests_count }}{% endif %}
+pour {{ page.headline }}.
+<br/><br/>
+Nom : {{ event_rsvp.signup.name }}<br/>
+Courriel : {{ event_rsvp.signup.email }}<br/>
+Invités : {{ event_rsvp.guests_count }}<br/>
+Référé par : {{ event_rsvp.recruiter.name_or_email }}
+<br/><br/>
+Vous pouvez éditer votre {{ page.parent.calendar.event_name | downcase }} ici:
+<br/><br/>
+<a href="{{ edit_url }}">{{ edit_url }}</a>
+<br/><br/>
+Vous pouve aussi inviter d'autres personnes à votre {{ page.parent.calendar.event_name | downcase }} avec ce lien :
+<br/><br/>
+<a href="{{ page_url }}">{{ page_url }}</a>
+<br/><br/>
+{{ broadcaster.name }}<br/>
+<a href="{{ site.full_url }}">{{ site.full_url }}</a><br/>

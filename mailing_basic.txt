@@ -1,0 +1,6 @@
+{{ body }}
+
+-=-=-
+{{ settings.official_name }}{% if settings.has_address? %} - {{ settings.address.one_line }} {% endif %}
+Ce courriel a été envoyé à {{ recipient.email }}.  Afin de ne plus recevoir de courriels : {{ settings.site.unsubscribe_url }}
+-=-=-

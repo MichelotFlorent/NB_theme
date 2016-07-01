@@ -1,0 +1,18 @@
+//Blogue de JFL
+
+p.rss-title {
+    font-size:1em;
+    font-weight: bold;
+}
+ul.rss-items {
+    padding-left: 0px;
+}
+li.rss-item {
+    padding-bottom: 25px;
+    font-size: 0.8em;
+    line-height: 1.3em;
+}
+a.rss-item {
+    font-weight: bold;
+    font-size: 1.4em;
+}

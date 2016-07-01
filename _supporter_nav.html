@@ -1,0 +1,169 @@
+<p align="center">
+     <a href="/contribution" title="Faire une contribution" alt="Faire une contribution" target="_blank"><img src="http://d3n8a8pro7vhmx.cloudfront.net/themes/57506db36ad5758b01000001/attachments/original/1467295051/coin-3.png?1467295051" border="0"  style="border-radius: 70px;    height: 72px;    width: 72px;"></a>
+ </p>
+
+<div class="user-data" style="max-height: 100px !important;">
+  
+  <div class="supporter_pic">{{ request.current_signup.bigger_profile_image }}</div>
+  
+  <div class="supporter_data">
+    
+    <a href="{{ request.current_signup.settings_url }}" class="name" id="name">{{ request.current_signup.name_or_email }}</a>
+    
+    <ul id="sup_profile">
+      
+      {% if site.show_public_profiles? == false %}
+      
+      {% elsif request.current_signup.is_profile_published? %}
+      
+      <li><a href="{{ request.current_signup.profile_url }}">Profil public</a> - <span class="inline-block"><a href="{{ request.current_signup.logout_url }}">Déconnexion</a></span></li>
+      
+      {% else %}
+      
+      <li>Pas de profil public - <span class="inline-block">(<a href="{{ request.current_signup.logout_url }}">Déconnexion</a>)</span></li>
+      
+      {% endif %}
+      
+      <li class="points"><span class="pc">{{ request.current_signup.capital_amount_format }}</span></li>
+      
+      {% if request.current_signup.has_membership_level_badge %}
+      
+      {% if site.has_membership_page? %}
+      
+      <li><span class="badge"><a href="{{ site.membership_page.url }}">{{ request.current_signup.membership_level_badge }}</a></span></li>
+      
+      {% else %}
+      
+      <li><span class="badge">{{ request.current_signup.membership_level_badge }}</span></li>
+      
+      {% endif %}
+      
+      {% endif %}
+      
+      {% if request.current_signup.is_banned? %}
+      
+      <li><span class="">Banni</span></li>
+      
+      {% elsif request.current_signup.rule_violations_count == 1 %}
+      
+      <li><span class=""> {{ "fugue-flag-yellow" | icon }} Attention</span></li>
+      
+      {% elsif request.current_signup.rule_violations_count == 2 %}
+      
+      <li><span class=""> {{ "fugue-flag" | icon }} 1 manquement</span></li>
+      
+      {% elsif request.current_signup.rule_violations_count == 3 %}
+      
+      <li><span class=""> {{ "fugue-flag-gray" | icon }} 2 manquements</span></li>
+      
+      {% endif %}
+      
+    </ul>
+    
+  </div>
+  
+</div>
+
+<ul class="supporter-nav">
+  
+  {% if request.current_user.is_intern? %}
+  
+  {% if request.current_user.can_publish? %}
+  {% if page_type == 'Blog' %}
+  <li class="ico_feather"><a href="{{ page.admin_new_subpage_url }}"><i class="icon-feather"></i> <span class="menu-label">Nouveau billet de blogue</span></a></li>
+  <li class="ico_edit"><a href="{{ page.admin_edit_url }}"><i class="icon-edit"></i> <span class="menu-label">Éditer cette page</span></a></li>
+  {% elsif page_type == 'Suggestion Box' %}
+  <li class="ico_feather"><a href="{{ page.admin_new_subpage_url }}"><i class="icon-feather"></i> <span class="menu-label">Nouvelle proposition</span></a></li>
+  <li class="ico_edit"><a href="{{ page.admin_edit_url }}"><i class="icon-edit"></i> <span class="menu-label">Éditer cette page</span></a></li>
+  {% elsif page_type == 'Calendar' %}
+  <li class="ico_feather"><a href="{{ page.admin_new_subpage_url }}"><i class="icon-feather"></i> <span class="menu-label">Nouvel événement</span></a></li>
+  <li class="ico_edit"><a href="{{ page.admin_edit_url }}"><i class="icon-edit"></i> <span class="menu-label">Éditer cette page</span></a></li>
+  {% elsif page_type == 'Blog Post' %}
+  <li class="ico_edit"><a href="{{ page.blog_post.admin_edit_url }}"><i class="icon-edit"></i> <span class="menu-label">Éditer ce billet de blogue</span></a></li>
+  {% elsif page_type == 'Question' %}
+  <li class="ico_edit"><a href="{{ page.question.admin_edit_url }}"><i class="icon-edit"></i> <span class="menu-label">Éditer cette question</span></a></li>
+  {% elsif page_type == 'FAQ' %}
+  <li class="ico_edit"><a href="{{ page.faq.admin_edit_url }}"><i class="icon-edit"></i> <span class="menu-label">Éditer les questions</span></a></li>
+  {% elsif page_type == 'Suggestion' %}
+  <li class="ico_edit"><a href="{{ page.suggestion.admin_edit_url }}"><i class="icon-edit"></i> <span class="menu-label">Éditer les propositions</span></a></li>
+  {% elsif page_type == 'Event' %}
+  <li class="ico_edit"><a href="{{ page.event.admin_edit_url }}"><i class="icon-edit"></i> <span class="menu-label">Edit this event</span></a></li>
+  {% elsif page_type == 'Profile' %}
+  <li class="ico_edit"><a href="{{ profile.admin_edit_url }}"><i class="icon-edit"></i> <span class="menu-label">Éditer cette personne</span></a></li>
+  {% elsif page %}
+  <li class="ico_edit"><a href="{{ page.admin_edit_url }}"><i class="icon-edit"></i> <span class="menu-label">Éditer cette page</span></a></li>
+  {% endif %}
+  {% endif %}
+  <li class="ico_settings"><a href="{{ site.admin_dashboard_url }}"><i class="icon-settings"></i> <span class="menu-label">Tableau de bord</span></a></li>
+  
+  {% endif %}
+  
+  {% for child in site.supporter_pages %}
+  <li {% if page == child %}class="on"{% endif %}><a href="{{ child.url }}">{{ child.icon | icon }} <span class="menu-label">{{ child.name }}</span></a></li>
+  {% endfor %}
+  
+  {% if page_type == 'User Page' %}
+  <li class="ico_pages on"><a href="{{ site.edit_pages_url }}"><i class="icon-popup"></i> <span class="menu-label">Vos pages</span></a></li>
+  {% else %}
+  <li class="ico_pages"><a href="{{ site.edit_pages_url }}"><i class="icon-popup"></i> <span class="menu-label">Vos pages</span></a></li>
+  {% endif %}
+  {% if page_type == 'User Settings' %}
+  <li class="on ico_settings"><a href="{{ request.current_signup.settings_url }}"><i class="icon-settings"></i> <span class="menu-label">Paramètres</span></a></li>
+  {% else %}
+  <li class="ico_settings"><a href="{{ request.current_signup.settings_url }}"><i class="icon-settings"></i> <span class="menu-label">Paramètres</span></a></li>
+  {% endif %}
+  
+  {% if page and page.is_public_editing_available? %}
+  <li class="ico_edit"><a href="{{ page.edit_url }}"><i class="icon-edit"></i> <span class="menu-label">Éditer cette page</span></a></li>
+  {% endif %}
+  
+</ul>
+
+{% if request.current_signup.has_parent? %}
+<div class="user-data">
+  <div class="supporter_pic">{{ request.current_signup.parent.bigger_profile_image }}</div>
+  <div class="supporter_data">
+    <div class="padbottom">
+      Personne ressource : <br />{{ request.current_signup.parent.published_name_linked }}
+    </div>
+    {% if request.current_signup.parent.has_twitter_info? %}
+    <a href="{{ request.current_signup.parent.twitter_profile_url }}">Twitter</a><br />
+    {% endif %}
+    {% if request.current_signup.parent.has_facebook_info? %}
+    <a href="{{ request.current_signup.parent.facebook_profile_url }}">Facebook</a><br />
+    {% endif %}
+    {% if request.current_signup.parent.has_email? %}
+    <a href="mailto:{{ request.current_signup.parent.email }}">Courriel</a>
+    {% endif %}
+  </div>
+</div>
+{% endif %}
+
+{% if page and page.has_rss? %}
+<div class="rss padtopmore">
+  <a href="{{ page.rss_url }}"><i class="icon-rss"></i> Abonnement au flux RSS</a>
+</div>
+{% elsif page and page.has_parent? and page.parent.has_rss? %}
+<div class="rss padtopmore">
+  <a href="{{ page.parent.rss_url }}"><i class="icon-rss"></i> Abonnement au flux RSS</a>
+</div>
+{% endif %}
+
+<script type="text/javascript">      
+  $(function() {
+    
+    var listItems = $(".supporter-nav li");
+    listItems.each(function(idx, li) {
+      
+      var class_name = $(this).find(".menu-label").html();
+      
+      var proccesed_class = class_name.replace(/\s+/g, '-').toLowerCase();
+      
+      console.log (proccesed_class);
+      
+      $(this).addClass(proccesed_class);
+      
+    });
+    
+  });    
+</script>

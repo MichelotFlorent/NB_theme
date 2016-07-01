@@ -1,0 +1,5 @@
+<div class="byline">
+Publié par {{ page.author.published_name_linked }} <span class="pc">{{ page.author.capital_amount_format }}</span>
+{% if site.has_rule_page? %}&middot; <a href="{{ page.flag_url }}" class="get flag">Signaler</a>{% endif %}<br/>
+{{ page.published_at | date: '%d&#47;%n&#47;%Y' }}
+</div>

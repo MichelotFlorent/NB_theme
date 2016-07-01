@@ -1,0 +1,17 @@
+{% if request.logged_in? %}
+
+{% include "supporter_nav" %}
+
+{% else %}
+
+<p align="center">
+     <a href="/contribution" title="Faire une contribution" alt="Faire une contribution" target="_blank"><img src="http://d3n8a8pro7vhmx.cloudfront.net/themes/57506db36ad5758b01000001/attachments/original/1467295051/coin-3.png?1467295051" border="0"  style="border-radius: 70px;    height: 72px;    width: 72px;"></a>
+ </p>
+
+<ul class="supporter-nav logged-off">
+  <li class="facebook"><a href="{{ request.facebook_connect_url }}"><i class="icon-facebook"></i> <span class="menu-label">Connexion Facebook</span></a></li>
+  <li class="twitter"><a href="{{ request.twitter_connect_url }}"><i class="icon-twitter"></i> <span class="menu-label">Connexion Twitter</span></a></li>
+  <li class="mail"><a href="/login"><i class="icon-mail"></i> <span class="menu-label">Connexion courriel</span></a></li>
+</ul>
+
+{% endif %}

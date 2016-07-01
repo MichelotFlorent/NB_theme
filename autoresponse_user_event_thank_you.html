@@ -1,0 +1,35 @@
+{{recipient.first_name}}
+<br/><br/>
+Nous vous remercions d'accueillir une activité.
+<br/><br/>
+Voici le lien par lequel les participants pourront s'inscrire :
+<br/><br/>
+<a href="{{ page_url }}">{{ page_url }}</a>
+<br/><br/>
+Veuillez vérifier les détails de votre activité ci-dessous. 
+<br/><br/>
+Contact : {{ page.event.contact_name }}<br/>
+Courriel : {{ page.event.contact_email }}{% if page.event.is_contact_email_private? %} (ne pas publier sur le site){% endif %}<br/>
+Téléphone : {{ page.event.contact_phone }}{% if page.event.is_contact_phone_private? %} (ne pas publier sur le site){% endif %}<br/>
+<br/>
+
+Nom : {{ page.headline }}<br/>
+Quand : 
+{% if page.event.is_multi_day? %}
+  {{ page.event.local_start_at | event_time }} - {{ page.event.local_end_at | event_time }}
+{% else %}
+  {{ page.event.local_start_at | event_time }}
+{% endif %}<br/>
+Durée : {{ page.event.duration_in_words }}<br/>
+Fusea horaire : {{ page.event.time_zone }}<br/>
+Lieu : {{ page.event.venue_name }}<br/>
+Adresse : {% if page.event.has_venue_address? %}{{ page.event.venue_address.one_line }}{% endif %}<br/>
+Capacité maximale : {% if page.event.maximum_capacity == 0 %}NONE{% else %}{{ page.event.maximum_capacity }}{% endif %}<br/>
+Prix du billet : {% if page.event.user_ticket_price_in_cents == 0 %}FREE{% else %}{{ page.event.user_ticket_price_with_currency }}{% endif %}<br/>
+Lien pour l'achat de billets : {{ page.event.user_ticket_purchase_url }}<br/>
+{% if page.event.content.size > 0 %} 
+<br/><br/>
+Description : {{ page.event.content_for_mailing }}
+{% endif %}
+<br/><br/>
+Pour effectuer des changements, cliquez ici : <a href="{{ edit_url }}">{{ edit_url }}</a>

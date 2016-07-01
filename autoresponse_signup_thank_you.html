@@ -1,0 +1,10 @@
+{{recipient.first_name}}
+<br /><br />
+Nous vous remercions d'avoir rejoint {{ site.name }}.
+<br/><br/>
+{% if recipient.has_password? == false %}
+<a href="{{ recipient.account_activation_url }}">Veuillez cliquer ici afin d'activer votre compte.</a>.
+<br/><br/>
+{% endif %}
+{{ broadcaster.name }}<br/>
+<a href="{{ site.full_url }}">{{ site.full_url }}</a><br/>

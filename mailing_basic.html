@@ -1,0 +1,31 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<html><head><title></title>
+<style type="text/css">
+body, td, font { font-size: 10pt; }
+td p { margin: 0em; }
+p { margin: 1em 0em; }
+td div p { margin: 1em 0em; }
+</style>
+</head><body marginheight=5 topmargin=5>
+<font face="Arial, Verdana, sans-serif" size=2>
+	
+{{ body }}
+
+<br/><br/>
+-=-=-<br/>
+{{ settings.official_name }}{% if settings.has_address? %} &middot; {{ settings.address.one_line }} {% endif %}
+<br/>Ce courriel a été envoyé à {{ recipient.email }}.  Afin d'arrêter de recevoir des courriels, <a href="{{ settings.site.unsubscribe_url }}">cliquez ici</a>.
+{% if broadcaster.has_twitter? or broadcaster.has_facebook? %}
+<br/>Vous pouvez aussi vous tenir au courant sur {{ broadcaster.name }}
+  {% if broadcaster.has_twitter? and broadcaster.has_facebook_page? %}
+    sur <a href="{{ broadcaster.twitter_profile_url }}">Twitter</a> ou <a href="{{ broadcaster.facebook_page_profile_url }}">Facebook</a>.
+  {% elsif broadcaster.has_twitter? %}
+    sur <a href="{{ broadcaster.twitter_profile_url }}">Twitter</a>.
+  {% elsif broadcaster.has_facebook_page? %}
+  sur <a href="{{ broadcaster.facebook_page_profile_url }}">Facebook</a>.
+  {% endif %}
+{% endif %}
+<br/>
+-=-=-
+</font>
+</body></html>
